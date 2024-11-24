@@ -16,6 +16,10 @@ describe("Client repository unit test", () => {
     await sequelize.addModels([ClientModel]);
     await sequelize.sync();
   });
+
+  afterEach(async () => {
+    await sequelize.close();
+  })
   it("should find a client", async () => {
     const facade = ClientFacadeFactory.create();
     const input = {
@@ -31,6 +35,27 @@ describe("Client repository unit test", () => {
     const client = await facade.findClient({
       id: "1",
     });
+
+    expect(client).toBeDefined();
+    expect(client).toEqual(expect.objectContaining(input));
+  });
+
+  it("should add a client", async () => {
+    const facade = ClientFacadeFactory.create();
+    const input = {
+      id: "1",
+      name: "Client 1",
+      email: "x@x.com",
+      address: "Address 1",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    const output = await facade.addClient(input);
+
+    expect(output).toBeDefined();
+    expect(output).toEqual(expect.objectContaining(input));
+
+    const client = await ClientModel.findOne({ where: { id: "1" } });
 
     expect(client).toBeDefined();
     expect(client).toEqual(expect.objectContaining(input));

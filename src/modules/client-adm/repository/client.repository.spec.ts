@@ -19,6 +19,10 @@ describe("Client repository unit test", () => {
     await sequelize.sync();
   });
 
+  afterEach(async () => {
+    await sequelize.close();
+  });
+
   it("should create a client", async () => {
     const clientRepository = new ClientRepository();
 
