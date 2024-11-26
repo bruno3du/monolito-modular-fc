@@ -1,5 +1,5 @@
 import Id from "../../../@shared/domain/value-object/id.value-object";
-import { FindClientInputDto, FindClientOutputDto } from "./find-client.dto";
+import { FindClientInputDto } from "./find-client.dto";
 import FindClientUseCase from "./find-client.usecase";
 
 const client = {
