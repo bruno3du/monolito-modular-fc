@@ -16,7 +16,13 @@ describe("Add Client UseCase Unit Tests", () => {
     const input: AddClientInputDto = {
       name: "Client 1",
       email: "x@x.com",
-      address: "Address 1",
+      city: "City",
+      complement: "Complement",
+      number: "123",
+      state: "State",
+      street: "Street",
+      zipCode: "ZipCode",
+      id: "1",
     };
     await clientRepository.add(input);
     const result = await usecase.execute(input);
@@ -26,7 +32,6 @@ describe("Add Client UseCase Unit Tests", () => {
       expect.objectContaining({
         email: input.email,
         name: input.name,
-        address: input.address,
       })
     );
   });

@@ -9,7 +9,12 @@ export default class FindClientUseCase implements UseCaseInterface {
 
     return {
       name: client.name,
-      address: client.address,
+      city: client.address.city,
+      complement: client.address.complement,
+      number: client.address.number,
+      state: client.address.state,
+      street: client.address.street,
+      zipCode: client.address.zipCode,
       email: client.email,
       createdAt: client.createdAt,
       updatedAt: client.updatedAt,

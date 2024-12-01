@@ -1,6 +1,7 @@
 import { Sequelize } from "sequelize-typescript";
 import { ClientModel } from "../repository/client.model";
 import ClientFacadeFactory from "../factory/client-adm.facade.factory";
+import { AddClientFacadeInputDto } from "./client-adm.facade.interface";
 
 describe("Client repository unit test", () => {
   let sequelize: Sequelize;
@@ -19,14 +20,19 @@ describe("Client repository unit test", () => {
 
   afterEach(async () => {
     await sequelize.close();
-  })
+  });
   it("should find a client", async () => {
     const facade = ClientFacadeFactory.create();
     const input = {
       id: "1",
       name: "Client 1",
       email: "x@x.com",
-      address: "Address 1",
+      city: "City 1",
+      state: "State 1",
+      street: "Street 1",
+      number: "Number 1",
+      zipCode: "Zip Code 1",
+      complement: "Complement 1",
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -42,13 +48,16 @@ describe("Client repository unit test", () => {
 
   it("should add a client", async () => {
     const facade = ClientFacadeFactory.create();
-    const input = {
+    const input: AddClientFacadeInputDto = {
       id: "1",
       name: "Client 1",
       email: "x@x.com",
-      address: "Address 1",
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      city: "City 1",
+      state: "State 1",
+      street: "Street 1",
+      number: "Number 1",
+      zipCode: "Zip Code 1",
+      complement: "Complement 1",
     };
     const output = await facade.addClient(input);
 
